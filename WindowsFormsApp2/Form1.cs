@@ -506,8 +506,9 @@ namespace WindowsFormsApp2
             processPb.Value = 0;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                //try
-                //{
+                int IdQ = 0;
+                try
+                {
 
                     DateTime localDate = DateTime.Now;
 
@@ -556,7 +557,7 @@ namespace WindowsFormsApp2
                     command = new MySqlCommand(ComandSQL2, connection1);
                     MySqlDataReader reader2 = command.ExecuteReader();
                     reader2.Read();
-                    int IdQ = reader2.GetInt32(0);
+                    IdQ = reader2.GetInt32(0);
                     processPb.Value+= 1;
                     reader2.Close();
                     
@@ -672,6 +673,7 @@ namespace WindowsFormsApp2
                     command.ExecuteNonQuery();
                     processPb.Value += 1;
                 /////////////////////////
+
                 Dictionary<int, int> countries = new Dictionary<int, int>();
                 string ComandSQ = "SELECT MAX(discipline.Discipline_ID) AS expr1 FROM discipline " +
                             "WHERE discipline.Qualification_ID =" + IdQ.ToString();
@@ -721,28 +723,17 @@ namespace WindowsFormsApp2
                 Search.ShowDialog();
                 this.Visible = true;
 
-                /*
-                for(int row = 1; row <= sheet4.LastRowNum; row++)
-                {
-
-
-
-
-                }*/
-                /*
-                SEARCH Search = new SEARCH();
-                Search.ID = IdQ;
-                Search.StringConnection = connectionString;
-                Search.NewOrOld = true;
-                this.Visible = false;
-                Search.ShowDialog();*/
-
-                /*}
+                }
                 catch (Exception exc)
                 {
                     MessageBox.Show(exc.ToString());
-
-                }*/
+                    SEARCH Search = new SEARCH();
+                    Search.ID = IdQ;
+                    Search.StringConnection = connectionString;
+                    Search.NewOrOld = true;
+                    this.Visible = false;
+                    Search.ShowDialog();
+                }
             }
         }
 

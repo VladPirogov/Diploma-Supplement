@@ -1395,7 +1395,7 @@ namespace WindowsFormsApp2
                 //table.Columns[7].SetWidth(9, Word.WdRulerStyle.wdAdjustSameWidth);
                 table.Columns.PreferredWidthType = Word.WdPreferredWidthType.wdPreferredWidthPoints;
                 table.Columns[1].SetWidth(15f, Word.WdRulerStyle.wdAdjustNone);
-                table.Columns[2].SetWidth(350f, Word.WdRulerStyle.wdAdjustNone);
+                table.Columns[2].SetWidth(325f, Word.WdRulerStyle.wdAdjustNone);
                 table.Columns[3].SetWidth(15f, Word.WdRulerStyle.wdAdjustNone);
                 table.Columns[4].SetWidth(28f, Word.WdRulerStyle.wdAdjustNone);
                 table.Columns[5].SetWidth(28f, Word.WdRulerStyle.wdAdjustNone);
