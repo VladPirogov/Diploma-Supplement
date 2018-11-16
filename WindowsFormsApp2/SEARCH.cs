@@ -23,7 +23,7 @@ namespace WindowsFormsApp2
 
         private bool TextChanged_15_16_17_18 = false;
 
-        private Dictionary<int, string> filesPath = new Dictionary<int, string>();
+        public Dictionary<int, string> filesPath = new Dictionary<int, string>();
         private Dictionary<int, Student> students = new Dictionary<int, Student>();
         private Dictionary<string, string> serviceValues = new Dictionary<string, string>();
         private StringMultiLanguage programSpecification = new StringMultiLanguage();
@@ -389,6 +389,7 @@ namespace WindowsFormsApp2
                 DateTime localDate = DateTime.Now;
                 filesPath = new Dictionary<int, string>();
                 filesPath.Add(1, FileName); // Добавление файлового пути
+                
                 rbStatus.Text += String.Format("{0}:{1}:{2}: Файл даних \"Word\" успішно завантажено.\n", localDate.Hour, localDate.Minute, localDate.Second);
 
             }

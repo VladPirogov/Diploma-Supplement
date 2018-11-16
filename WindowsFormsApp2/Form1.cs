@@ -542,12 +542,18 @@ namespace WindowsFormsApp2
                     command.Parameters.AddWithValue("Qualification_UA",  sheet1.GetRow(0).GetCell(1).StringCellValue);
                     command.Parameters.AddWithValue("FieldStudy_UA",     sheet1.GetRow(2).GetCell(1).StringCellValue);
                     command.Parameters.AddWithValue("FieldStudy_EN",     sheet1.GetRow(3).GetCell(1).StringCellValue);
-                    command.Parameters.AddWithValue("FirstSpecialty_UA", sheet1.GetRow(4).GetCell(1).StringCellValue);
-                    command.Parameters.AddWithValue("FirstSpecialty_EN", sheet1.GetRow(5).GetCell(1).StringCellValue);
-                    command.Parameters.AddWithValue("SecondSpecialty_UA",sheet1.GetRow(6).GetCell(1).StringCellValue);
-                    command.Parameters.AddWithValue("SecondSpecialty_EN",sheet1.GetRow(7).GetCell(1).StringCellValue);
-                    command.Parameters.AddWithValue("Specialization_UA", sheet1.GetRow(8).GetCell(1).StringCellValue);
-                    command.Parameters.AddWithValue("Specialization_EN", sheet1.GetRow(9).GetCell(1).StringCellValue);
+                    try { command.Parameters.AddWithValue("FirstSpecialty_UA", sheet1.GetRow(4).GetCell(1).StringCellValue); }
+                    catch { command.Parameters.AddWithValue("FirstSpecialty_UA", ""); }
+                    try { command.Parameters.AddWithValue("FirstSpecialty_EN", sheet1.GetRow(5).GetCell(1).StringCellValue); }
+                    catch { command.Parameters.AddWithValue("FirstSpecialty_EN", ""); }
+                    try { command.Parameters.AddWithValue("SecondSpecialty_UA", sheet1.GetRow(6).GetCell(1).StringCellValue); }
+                    catch { command.Parameters.AddWithValue("SecondSpecialty_UA", ""); }
+                    try { command.Parameters.AddWithValue("SecondSpecialty_EN", sheet1.GetRow(7).GetCell(1).StringCellValue); }
+                    catch { command.Parameters.AddWithValue("SecondSpecialty_EN", ""); }
+                    try { command.Parameters.AddWithValue("Specialization_UA", sheet1.GetRow(8).GetCell(1).StringCellValue); }
+                    catch { command.Parameters.AddWithValue("Specialization_UA", ""); }
+                    try { command.Parameters.AddWithValue("Specialization_EN", sheet1.GetRow(9).GetCell(1).StringCellValue); }
+                    catch { command.Parameters.AddWithValue("Specialization_EN", ""); }
                     command.Parameters.AddWithValue("Degree",            sheet1.GetRow(10).GetCell(1).StringCellValue);
                     command.Parameters.AddWithValue("Date", DateTime.Now);
                     command.ExecuteNonQuery();
@@ -726,13 +732,17 @@ namespace WindowsFormsApp2
                 }
                 catch (Exception exc)
                 {
-                    MessageBox.Show(exc.ToString());
-                    SEARCH Search = new SEARCH();
-                    Search.ID = IdQ;
-                    Search.StringConnection = connectionString;
-                    Search.NewOrOld = true;
-                    this.Visible = false;
-                    Search.ShowDialog();
+                    try
+                    {
+                        MessageBox.Show(exc.ToString());
+                        SEARCH Search = new SEARCH();
+                        Search.ID = IdQ;
+                        Search.StringConnection = connectionString;
+                        Search.NewOrOld = true;
+                        this.Visible = false;
+                        Search.ShowDialog();
+                    }
+                    catch (Exception exce) { MessageBox.Show(exce.ToString()); }
                 }
             }
         }
